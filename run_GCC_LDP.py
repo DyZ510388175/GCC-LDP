@@ -164,8 +164,8 @@ if __name__ == '__main__':
     filename = ['musae_PTBR_edges_sample', 'facebook_combined_sample', 'musae_ES_edges_sample']
     # filename = ['karate', 'email_sample', 'gemsec_deezer_sample', 'facebook_combined_sample', 'Email-Enron_sample',
     #             'CA-CondMat_sample', 'musae_ES_edges_sample', 'musae_git_edges_sample', 'CA-HepTh_sample', 'musae_PTBR_edges_sample']
-    threshold_ds = [1, 2, 3, 4]  # 设置外围节点阈值
-    threshold_betas = [0.05, 0.1, 0.2, 0.4, 0.8]  # 设置连接强度阈值
+    threshold_ds = [5, 10, 15, 20, 25]  # 设置外围节点阈值
+    threshold_betas = [0.05, 0.1, 0.2, 0.3, 0.4, 0.5]  # 设置连接强度阈值
     for file_idx, file in enumerate(filename):
         read_G = nx.read_edgelist('dataset/' + file + '.txt')
         G = processing_indexOfnodes(read_G)
