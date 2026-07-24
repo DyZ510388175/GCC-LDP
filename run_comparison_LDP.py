@@ -153,9 +153,9 @@ if __name__ == '__main__':
 
     """gemsec_deezer_sample CA-CondMat_sample"""
     # filename = ['karate', 'email_sample', 'gemsec_deezer_sample', 'facebook_combined_sample', 'Email-Enron_sample',
-    #             'CA-CondMat_sample', 'musae_ES_edges_sample', 'musae_git_edges_sample', 'CA-HepTh_sample', 'musae_PTBR_edges_sample']
-    # threshold_ds = [1, 3, 1, 3, 2, 2, 3, 2, 1, 4]  # 设置外围节点阈值
-    # threshold_betas = [0.2, 0.8, 0.1, 0.2, 0.8, 0.8, 0.8, 0.2, 0.2, 0.4]  # 设置连接强度阈值
+    #             'CA-CondMat_sample', 'musae_ES_edges_sample', 'musae_git_edges_sample', 'CA-HepTh_sample', 'musae_PTBR_edges_sample', 'DBLP']
+    # threshold_ds = [1, 3, 5, 20, 10, 2, 10, 2, 15, 5]  # 设置外围节点阈值
+    # threshold_betas = [0.2, 0.8, 0.1, 0.2, 0.4, 0.8, 0.8, 0.2, 0.4, 0.2]  # 设置连接强度阈值
 
     # 测试示例
     # privacy_budgets = [10]  # 设置隐私预算
