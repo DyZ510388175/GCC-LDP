@@ -71,7 +71,7 @@ These parameters are dataset‑dependent; optimal values are reported in the pap
 Different methods use different privacy accounting models:
 | Method	| Budget per Item	| 	Accounting Type	| Code Handling	 |  	  
 |-------|-------|-------|-------|
-| LF‑GDPR | ϵ/2 per edge | Edge‑level | privacy_budget / 2 |
+| LF‑GDPR | ϵ/2 for edge information + ϵ/2 for degree information | Edge‑level | privacy_budget / 2 |
 | LDPGen | ϵ per edge | Edge‑level | privacy_budget |
 | GCC‑LDP | ϵ per edge | Edge‑level | privacy_budget |
 | Wdt‑SCAN | ϵ per edge | Edge‑level | privacy_budget |
