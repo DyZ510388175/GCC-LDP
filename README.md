@@ -13,7 +13,7 @@ GCC‑LDP is a privacy‑preserving graph clustering framework that:
 ###  Dependencies
 ```
 Package 	       Version         Purpose 
-networkx   	     ≥2.6	      Graph operations
+networkx   	      ≥2.6	      Graph operations
 numpy	           ≥1.21    	Numerical computations
 scikit‑learn	   ≥1.0	   Evaluation metrics (ARI, AMI)
 matplotlib       ≥3.4	        Visualisation
