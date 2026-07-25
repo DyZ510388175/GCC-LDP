@@ -14,7 +14,8 @@ GCC‑LDP is a privacy‑preserving graph clustering framework that:
 bash
 pip install -r requirements.txt
 
-Dependencies
+
+** Dependencies **
 Package	Version	Purpose
 networkx	≥2.6	Graph operations
 numpy	≥1.21	Numerical computations
@@ -26,6 +27,7 @@ pyyaml	≥6.0	Configuration parsing (optional)
 scipy	≥1.7	Scientific computing
 
 # GCC-LDP
+
 Dependencies
 networkx>=2.6
 
