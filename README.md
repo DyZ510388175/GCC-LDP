@@ -34,35 +34,48 @@ pip install -r requirements.txt
 We evaluate GCC‑LDP on multiple real‑world networks. All datasets are located in the dataset/ directory.
 | Dataset	 | Nodes  | 	Edges	 | Description |
 |-------|-------|-------|-------|
-| 数据1 | 数据2 | 数据3 |数据3 |
-| 数据4 | 数据5 | 数据6 |数据3 |
+| Karate | 34 | 78 |Social network |
+| Facebook | 4，039 | 88，234 |Social network |
+| Email | 1，133 | 5，451 |Communication network |
+| PT | 1，912 | 31，299 |Social network |
+| DBLP | 317,080 | 1，049，866 |Social network |
+Note: For custom datasets, place your edge‑list file (.txt) in the dataset/ folder.
+
+### Quick Start
+**Run full comparison experiment (all baselines)**
+```
+python run_comparison_LDP.py
+```
+This will execute LDPGen, LF‑GDPR, GCC‑LDP (and optionally Wdt‑SCAN/GC‑NLDP if integrated) on the specified dataset and output evaluation metrics.
+
+
+**Run GCC‑LDP only**
+```
+python run_GCC_LDP.py
+```
+
+**Customise parameters**
+Edit the following variables directly in the run_comparison_LDP.py script:
+| Variable	 | Description  | 	Example	 | Description 
+|-------|-------|-------|
+| privacy_budget | Total privacy budget ε | 1 |
+| filename | Dataset name (without extension) | 'facebook' |
+| threshold_d | Peripheral node degree threshold | 20 |
+| threshold_beta | Connection strength threshold | 0.2 |
+
+These parameters are dataset‑dependent; optimal values are reported in the paper (Section 5.4).
+
+**Privacy Budget Allocation**
+Different methods use different privacy accounting models:
+| Method	| Budget per Item	| 	Accounting Type	| Code Handling	 |  	  
+|-------|-------|-------|-------|
+| LF‑GDPR | ϵ/2 per edge | Edge‑level | privacy_budget / 2 |
+| LDPGen | ϵ per edge | Edge‑level | privacy_budget |
+| GCC‑LDP | ϵ per edge | Edge‑level | privacy_budget |
+| Wdt‑SCAN | ϵ per edge | Edge‑level | privacy_budget |
+| GC‑NLDP | ϵ per edge | Node‑level | privacy_budget |
+
+LF-GDPR uses ϵ/2 because it protects two different types of graph information: connection information and degree information. According to the sequential composition property of differential privacy, the privacy budget is divided between these two mechanisms. Therefore, each mechanism is allocated a budget of ϵ/2 to ensure the overall privacy guarantee of ϵ.
 
 
 
-# GCC-LDP
-
-Dependencies
-networkx>=2.6
-
-numpy>=1.21
-
-scikit-learn>=1.0
-
-matplotlib>=3.4
-
-python-louvain>=0.16
-
-pandas>=1.3
-
-pyyaml>=6.0
-
-📊 Datasets
-We evaluate GCC-LDP on multiple real-world datasets:
-
-Dataset	Nodes	Edges	Description
-Karate	34	78	Zachary's Karate Club
-Facebook	4,039	88,234	Facebook social network
-Email	1,133	5,451	EU email network
-Dolphins	62	159	Dolphin social network
-Football	115	613	American college football
-All datasets are located in the dataset/ directory.
