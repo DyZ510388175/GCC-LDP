@@ -7,7 +7,7 @@ GCC‑LDP is a privacy‑preserving graph clustering framework that:
 - Introduces **Adjacency Set Vector (ASV)** encoding with Re‑Pair compression to significantly reduce encoding length and noise injection.
 - Achieves **two‑round** decentralized graph aggregation, eliminating iterative error accumulation.
 - Provides rigorous **LDP guarantees** with theoretical noise error bounds and utility preservation.
-- Outperforms state‑of‑the‑art methods by **10% – 20%** in clustering quality (ARI/AMI) across real‑world datasets.
+- Achieves **10%-20%** improvements over existing LDP graph clustering baselines in ARI and AMI.
 
 
 ###  Dependencies
