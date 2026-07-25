@@ -9,7 +9,7 @@ GCC‑LDP is a privacy‑preserving graph clustering framework that:
 - Provides rigorous **LDP guarantees** with theoretical noise error bounds and utility preservation.
 - Outperforms state‑of‑the‑art methods by **10% – 20%** in clustering quality (ARI/AMI) across real‑world datasets.
 
-Install all required dependencies:
+##Install all required dependencies:
 
 bash
 pip install -r requirements.txt
