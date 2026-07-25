@@ -1,3 +1,19 @@
+# GCC-LDP: Locally Differentially Private Graph Clustering via Structure-Preserving Graph Compression
+
+This repository contains the implementation of the paper **"Locally Differentially Private Graph Clustering via Structure-Preserving Graph Compression".
+
+GCC‑LDP is a privacy‑preserving graph clustering framework that:
+
+- Introduces **Adjacency Set Vector (ASV)** encoding with Re‑Pair compression to significantly reduce encoding length and noise injection.
+- Achieves **two‑round** decentralized graph aggregation, eliminating iterative error accumulation.
+- Provides rigorous **LDP guarantees** with theoretical noise error bounds and utility preservation.
+- Outperforms state‑of‑the‑art methods by **10% – 20%** in clustering quality (ARI/AMI) across real‑world datasets.
+
+Install all required dependencies:
+
+bash
+pip install -r requirements.txt
+
 # GCC-LDP
 Dependencies
 networkx>=2.6
