@@ -27,6 +27,7 @@ scipy	           ≥1.7	     Scientific computing
 
 ```
 bash
+cd LDP_graphcluster
 pip install -r requirements.txt
 ```
 
