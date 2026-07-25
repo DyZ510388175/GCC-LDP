@@ -9,11 +9,6 @@ GCC‑LDP is a privacy‑preserving graph clustering framework that:
 - Provides rigorous **LDP guarantees** with theoretical noise error bounds and utility preservation.
 - Outperforms state‑of‑the‑art methods by **10% – 20%** in clustering quality (ARI/AMI) across real‑world datasets.
 
-### Install all required dependencies:
-
-bash
-pip install -r requirements.txt
-
 
 ###  Dependencies
 |Package |	Version	| Purpose |
@@ -25,6 +20,13 @@ python‑louvain	≥0.16	Louvain baseline
 pandas	≥1.3	Data management
 pyyaml	≥6.0	Configuration parsing (optional)
 scipy	≥1.7	Scientific computing
+
+**Install all required dependencies:**
+
+```
+bash
+pip install -r requirements.txt
+```
 
 ###  Datasets
 We evaluate GCC‑LDP on multiple real‑world networks. All datasets are located in the dataset/ directory.
