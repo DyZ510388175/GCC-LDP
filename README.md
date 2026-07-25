@@ -36,10 +36,10 @@ We evaluate GCC‑LDP on multiple real‑world networks. All datasets are locate
 | Dataset	 | Nodes  | 	Edges	 | Description |
 |-------|-------|-------|-------|
 | Karate | 34 | 78 |Social network |
-| Facebook | 4，039 | 88，234 |Social network |
-| Email | 1，133 | 5，451 |Communication network |
-| PT | 1，912 | 31，299 |Social network |
-| DBLP | 317,080 | 1，049，866 |Social network |
+| Facebook | 4, 039 | 88, 234 |Social network |
+| Email | 1, 133 | 10, 903 |Communication network |
+| PT | 1, 912 | 31, 299 |Social network |
+| DBLP | 317, 080 | 1, 049, 866 |Social network |
 
 Note: For custom datasets, place your edge‑list file (.txt) in the dataset/ folder.
 
