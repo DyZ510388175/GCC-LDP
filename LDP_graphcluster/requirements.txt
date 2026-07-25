@@ -1,0 +1,24 @@
+# Core dependencies
+numpy>=1.21.0,<2.0.0
+scipy>=1.7.0,<2.0.0
+networkx>=2.6.0,<3.0.0
+
+# Machine learning & clustering
+scikit-learn>=1.0.0,<2.0.0
+
+# Community detection (baselines)
+python-louvain>=0.16,<1.0.0
+
+# Data handling & configuration
+pandas>=1.3.0,<2.0.0
+pyyaml>=6.0,<7.0.0
+
+# Visualization
+matplotlib>=3.4.0,<4.0.0
+seaborn>=0.11.0,<1.0.0
+
+# Optional: performance acceleration (if numba is available)
+numba>=0.56.0,<1.0.0
+
+# Optional: Jupyter notebook support (for interactive exploration)
+jupyter>=1.0.0,<2.0.0
