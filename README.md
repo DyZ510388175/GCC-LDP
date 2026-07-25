@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 
 ###  Dependencies
-|Package |	Version	| Purpose
+|Package |	Version	| Purpose |
 networkx	≥2.6	Graph operations
 numpy	≥1.21	Numerical computations
 scikit‑learn	≥1.0	Evaluation metrics (ARI, AMI)
