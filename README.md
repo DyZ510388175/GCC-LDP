@@ -15,7 +15,7 @@ bash
 pip install -r requirements.txt
 
 
-** Dependencies **
+###  Dependencies
 Package	Version	Purpose
 networkx	≥2.6	Graph operations
 numpy	≥1.21	Numerical computations
