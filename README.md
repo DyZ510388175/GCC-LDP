@@ -39,6 +39,7 @@ We evaluate GCC‑LDP on multiple real‑world networks. All datasets are locate
 | Email | 1，133 | 5，451 |Communication network |
 | PT | 1，912 | 31，299 |Social network |
 | DBLP | 317,080 | 1，049，866 |Social network |
+
 Note: For custom datasets, place your edge‑list file (.txt) in the dataset/ folder.
 
 ### Quick Start
@@ -75,7 +76,22 @@ Different methods use different privacy accounting models:
 | Wdt‑SCAN | ϵ per edge | Edge‑level | privacy_budget |
 | GC‑NLDP | ϵ per edge | Node‑level | privacy_budget |
 
+**Baselines**
+We compare GCC‑LDP against the following state‑of‑the‑art methods, all implemented in the graph/ directory:
+| Method	| Description	| 	Reference	 |  	  
+|-------|-------|-------|
+| LF‑GDPR | Adjacency‑bit‑vector graph metric estimation with Louvain | Ye et al., TKDE 2022 |
+| LDPGen | Degree‑vector based LDP graph clustering with K‑means | Qin et al., CCS 2017 |
+| GCC‑LDP | Adjacency‑bit‑vector with cyclic feedback loop | Fu et al., CS 2023 |
+| Wdt‑SCAN | Degree‑vector with Pareto‑based node partitioning | Hou et al., CS 2023 |
+
+All baseline implementations are provided with their original parameter settings as specified in the respective papers.
+
+
 LF-GDPR uses ϵ/2 because it protects two different types of graph information: connection information and degree information. According to the sequential composition property of differential privacy, the privacy budget is divided between these two mechanisms. Therefore, each mechanism is allocated a budget of ϵ/2 to ensure the overall privacy guarantee of ϵ.
+
+**Download Links**
+Most datasets can be downloaded from https://snap.stanford.edu/data/
 
 
 
