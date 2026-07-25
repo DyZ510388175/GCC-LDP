@@ -14,6 +14,17 @@ Install all required dependencies:
 bash
 pip install -r requirements.txt
 
+Dependencies
+Package	Version	Purpose
+networkx	≥2.6	Graph operations
+numpy	≥1.21	Numerical computations
+scikit‑learn	≥1.0	Evaluation metrics (ARI, AMI)
+matplotlib	≥3.4	Visualisation
+python‑louvain	≥0.16	Louvain baseline
+pandas	≥1.3	Data management
+pyyaml	≥6.0	Configuration parsing (optional)
+scipy	≥1.7	Scientific computing
+
 # GCC-LDP
 Dependencies
 networkx>=2.6
