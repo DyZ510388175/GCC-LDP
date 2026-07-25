@@ -90,11 +90,6 @@ We compare GCC‑LDP against the following state‑of‑the‑art methods, all i
 All baseline implementations are provided with their original parameter settings as specified in the respective papers.
 
 **Download Links**
-Most datasets can be downloaded from https://ogb.stanford.edu/
-
-
-
-**Download Links**
 Most datasets can be downloaded from https://snap.stanford.edu/data/
 
 
