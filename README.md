@@ -58,7 +58,7 @@ python run_GCC_LDP.py
 **Customise parameters**
 Edit the following variables directly in the run_comparison_LDP.py script:
 | Variable	 | Description  | 	Example	 | Description 
-|-------|-------|-------|
+|-------|-------|-------|-------|
 | privacy_budget | Total privacy budget ε | 1 |
 | filename | Dataset name (without extension) | 'facebook' |
 | threshold_d | Peripheral node degree threshold | 20 |
