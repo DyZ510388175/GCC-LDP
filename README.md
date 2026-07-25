@@ -84,7 +84,7 @@ We compare GCC‑LDP against the following state‑of‑the‑art methods, all i
 |-------|-------|-------|
 | LF‑GDPR | Adjacency‑bit‑vector graph metric estimation with Louvain | Ye et al., TKDE 2022 |
 | LDPGen | Degree‑vector based LDP graph clustering with K‑means | Qin et al., CCS 2017 |
-| GCC‑LDP | Adjacency‑bit‑vector with cyclic feedback loop | Fu et al., CS 2023 |
+| GC‑NLDP | Adjacency‑bit‑vector with cyclic feedback loop | Fu et al., CS 2023 |
 | Wdt‑SCAN | Degree‑vector with Pareto‑based node partitioning | Hou et al., CS 2023 |
 
 All baseline implementations are provided with their original parameter settings as specified in the respective papers.
