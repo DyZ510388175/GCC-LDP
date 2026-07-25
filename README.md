@@ -32,10 +32,10 @@ pip install -r requirements.txt
 
 ###  Datasets
 We evaluate GCC‑LDP on multiple real‑world networks. All datasets are located in the dataset/ directory.
-| 列1   | 列2   | 列3   |
-|-------|-------|-------|
-| 数据1 | 数据2 | 数据3 |
-| 数据4 | 数据5 | 数据6 |
+| Dataset	 | Nodes  | 	Edges	 | Description |
+|-------|-------|-------|-------|
+| 数据1 | 数据2 | 数据3 |数据3 |
+| 数据4 | 数据5 | 数据6 |数据3 |
 
 
 
