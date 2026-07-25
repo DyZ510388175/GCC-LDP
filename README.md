@@ -77,7 +77,7 @@ Different methods use different privacy accounting models:
 | Wdt‑SCAN | ϵ per edge | Edge‑level | privacy_budget |
 | GC‑NLDP | ϵ per edge | Node‑level | privacy_budget |
 
-LF-GDPR uses ϵ/2 because it protects two different types of graph information: connection information and degree information. According to the sequential composition property of differential privacy, the privacy budget is divided between these two mechanisms. Therefore, each mechanism is allocated a budget of ϵ/2 to ensure the overall privacy guarantee of ϵ.
+LF-GDPR allocates ϵ/2 to each mechanism because it simultaneously protects two types of graph information: edge connectivity and node degree. According to the sequential composition theorem of differential privacy, the total privacy loss is the sum of the budgets consumed by both mechanisms. Therefore, assigning ϵ/2 to each mechanism guarantees an overall privacy budget of ϵ.
 
 **Baselines**
 We compare GCC‑LDP against the following state‑of‑the‑art methods, all implemented in the graph/ directory:
