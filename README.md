@@ -69,13 +69,14 @@ These parameters are dataset‑dependent; optimal values are reported in the pap
 
 **Privacy Budget Allocation**
 Different methods use different privacy accounting models:
-| Method	| Budget per Item	| 	Accounting Type	| Code Handling	 |  	  
+| Method	| Total ϵ | Internal Components | Privacy Level | Component Budget |
 |-------|-------|-------|-------|
-| LF‑GDPR | ϵ/2 for edge information + ϵ/2 for degree information | Edge‑level | privacy_budget / 2 |
-| LDPGen | ϵ per edge | Edge‑level | privacy_budget |
-| GCC‑LDP | ϵ per edge | Edge‑level | privacy_budget |
-| Wdt‑SCAN | ϵ per edge | Edge‑level | privacy_budget |
-| GC‑NLDP | ϵ per edge | Node‑level | privacy_budget |
+| LF‑GDPR | ϵ | Edge perturbation + Degree perturbation | Edge‑level | ϵ/2 +ϵ/2  |
+| LDPGen | ϵ | K iterative rounds | Edge‑level | ϵ/K |
+| Wdt‑SCAN | ϵ | Optimal degree vector length +  Clustering | Edge‑level | 2ϵ/3 + ϵ/3 |
+| GC‑NLDP | ϵ | Initial clustering + Feedback refinement| Node‑level | ϵ/2 +ϵ/2 |
+| GCC‑LDP | ϵ | AEM compression + Aggregation | Edge‑level | 2ϵ/3 + ϵ/3 |
+
 
 LF-GDPR allocates ϵ/2 to each mechanism because it simultaneously protects two types of graph information: edge connectivity and node degree. According to the sequential composition theorem of differential privacy, the total privacy loss is the sum of the budgets consumed by both mechanisms. Therefore, assigning ϵ/2 to each mechanism guarantees an overall privacy budget of ϵ.
 
