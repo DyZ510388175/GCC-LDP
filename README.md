@@ -70,7 +70,7 @@ These parameters are dataset‑dependent; optimal values are reported in the pap
 **Privacy Budget Allocation**
 Different methods use different privacy accounting models:
 | Method	| Total ϵ | Internal Components | Privacy Level | Component Budget |
-|-------|-------|-------|-------|
+|-------|-------|-------|-------|-------|
 | LF‑GDPR | ϵ | Edge perturbation + Degree perturbation | Edge‑level | ϵ/2 +ϵ/2  |
 | LDPGen | ϵ | K iterative rounds | Edge‑level | ϵ/K |
 | Wdt‑SCAN | ϵ | Optimal degree vector length +  Clustering | Edge‑level | 2ϵ/3 + ϵ/3 |
