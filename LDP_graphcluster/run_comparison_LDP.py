@@ -3,6 +3,7 @@ import time
 import community
 import networkx as nx
 import matplotlib.pyplot as plt
+import numpy as np
 
 from graph.CommunityDetection import CommunityDetection
 from graph.CommunityMetrics import CommunityMetrics
@@ -184,7 +185,7 @@ if __name__ == '__main__':
         print("-------get ground_truth END!!!!!------------")
 
         for privacy_budget in privacy_budgets:
-            "3.1 LF_GDPR" "3.2 LDPGen" "3.3 GCC" "3.4 Wdt-SCAN" "3.5 GC-NLDP"
+            "3.1 LF_GDPR" "3.2 LDPGen" "3.3 Wdt-SCAN" "3.4 GC-NLDP" "3.5 GCC"
             LF_GDPR_metrics_lists = []  # 存储多次循环的指标值
             LF_GDPR_metrics_list_mean = []  # 存储指标的均值
             LF_GDPR_metrics_list_max = []  # 存储指标的最大值
@@ -219,8 +220,18 @@ if __name__ == '__main__':
                 # 创建 EpsilonRRPerturbation 实例并进行扰动
                 rr_perturber = RRPerturbation(adjacency_matrix, privacy_budget / 2)
                 perturbed_adjacency_matrix = rr_perturber.perturb()
+
+                true_degrees = [G.degree(node) for node in G.nodes()]
+                noise = np.random.laplace(0, 1/(privacy_budget / 2), len(true_degrees))
+                perturbed_degree_values = np.array(true_degrees) + noise
+                perturbed_degree_values = np.clip(perturbed_degree_values, 0, G.number_of_nodes() - 1)
+                perturbed_degree_values = np.round(perturbed_degree_values).astype(int)
+
+                # 构建扰动度字典
+                perturbed_degrees = {node: perturbed_degree_values[i] for i, node in enumerate(G.nodes())}
+
                 # 创建 LouvainClustering 实例
-                clustering_algo = LouvainClustering(perturbed_adjacency_matrix)
+                clustering_algo = LouvainClustering(perturbed_adjacency_matrix, perturbed_degrees)
                 # 运行 Louvain 算法进行社区划分
                 LF_GDPR_result = clustering_algo.run()
                 print('LF_GDPR_result:', LF_GDPR_result)
@@ -246,18 +257,7 @@ if __name__ == '__main__':
 
                 print("---------LDPGen END------------")
 
-                "3.3 GCC-LDP"
-                timeStart_GCC = time.time()
-                # 聚簇
-                clusters = GCC_LDP_Run(G, threshold_d, threshold_beta, threshold_s, privacy_budget)
-                # draw_spring(G, clusters)
-                timeEnd_GCC = time.time()
-
-                GCC_LDP_result = cluster_list_To_mapping(clusters)
-
-                print("---------GCC-LDP END------------")
-
-                "3.4 Wdt-SCAN"
+                "3.3 Wdt-SCAN"
                 timeStart_WdtSCAN = time.time()
                 wdt_model = WdtSCAN(
                     epsilon=privacy_budget,
@@ -270,7 +270,7 @@ if __name__ == '__main__':
                 timeEnd_WdtSCAN = time.time()
                 print("---------Wdt-SCAN END------------")
 
-                "3.5 GC-NLDP"
+                "3.4 GC-NLDP"
                 timeStart_GCNLDP = time.time()
                 gcnldp_model = GCNLDP(
                     epsilon=privacy_budget,
@@ -281,6 +281,17 @@ if __name__ == '__main__':
                 GCNLDP_result = gcnldp_model.cluster(G, num_clusters=num_clusters)
                 timeEnd_GCNLDP = time.time()
                 print("---------GC-NLDP END------------")
+
+                "3.5 GCC-LDP"
+                timeStart_GCC = time.time()
+                # 聚簇
+                clusters = GCC_LDP_Run(G, threshold_d, threshold_beta, threshold_s, privacy_budget)
+                # draw_spring(G, clusters)
+                timeEnd_GCC = time.time()
+
+                GCC_LDP_result = cluster_list_To_mapping(clusters)
+
+                print("---------GCC-LDP END------------")
 
                 """-----------------4.结果评估----------------------------------------------------"""
                 "4.1 LF-GDPR"
@@ -297,25 +308,25 @@ if __name__ == '__main__':
                 LDPGen_metrics_lists.append(calculate_metrics(G, LDPGen_result, ground_truth))
                 LDPGen_RunTime_sum += timeEnd_LDPGen - timeStart_LDPGen
 
-                "4.3 GCC-LDP"
+                "4.3 Wdt-SCAN"
+                print("----------Wdt-SCAN Result------------")
+                WdtSCAN_metrics_lists.append(calculate_metrics(G, WdtSCAN_result, ground_truth))
+                WdtSCAN_RunTime_sum += timeEnd_WdtSCAN - timeStart_WdtSCAN
+
+                "4.4 GC-NLDP"
+                print("----------GC-NLDP Result------------")
+                GCNLDP_metrics_lists.append(calculate_metrics(G, GCNLDP_result, ground_truth))
+                GCNLDP_RunTime_sum += timeEnd_GCNLDP - timeStart_GCNLDP
+
+                "4.5 GCC-LDP"
                 print("----------GCC-LDP Result------------")
                 # Create CommunityMetrics instance
                 # print_metrics(G, GCC_LDP_result, ground_truth)
                 GCC_metrics_lists.append(calculate_metrics(G, GCC_LDP_result, ground_truth))
                 GCC_RunTime_sum += timeEnd_GCC - timeStart_GCC
 
-                "4.4 Wdt-SCAN"
-                print("----------Wdt-SCAN Result------------")
-                WdtSCAN_metrics_lists.append(calculate_metrics(G, WdtSCAN_result, ground_truth))
-                WdtSCAN_RunTime_sum += timeEnd_WdtSCAN - timeStart_WdtSCAN
-
-                "4.5 GC-NLDP"
-                print("----------GC-NLDP Result------------")
-                GCNLDP_metrics_lists.append(calculate_metrics(G, GCNLDP_result, ground_truth))
-                GCNLDP_RunTime_sum += timeEnd_GCNLDP - timeStart_GCNLDP
-
             "输出结果"
-            "5.1 LF_GDPR" "5.2 LDPGen" "5.3 GCC" "5.4 Wdt-SCAN" "5.5 GC-NLDP"
+            "5.1 LF_GDPR" "5.2 LDPGen" "5.3 Wdt-SCAN" "5.4 GC-NLDP" "5.5 GCC"
             "5.1 LF_GDPR"
             # 获取每列的最大值
             LF_GDPR_max_metrics = [max(row) for row in zip(*LF_GDPR_metrics_lists)]
@@ -347,7 +358,31 @@ if __name__ == '__main__':
                                       LDPGen_RunTime_sum / loop_max, privacy_budget, threshold_d,
                                       threshold_beta)
 
-            "5.3 GCC"
+            "5.3 Wdt-SCAN"
+            if WdtSCAN_metrics_lists:
+                WdtSCAN_max_metrics = [max(row) for row in zip(*WdtSCAN_metrics_lists)]
+                WdtSCAN_mean_values = [sum(row) / len(row) for row in zip(*WdtSCAN_metrics_lists)]
+
+                output_file_max = 'output/' + 'comparison_' + file + '_max.txt'
+                output_file_mean = 'output/' + 'comparison_' + file + '_mean.txt'
+                print_metricsMax_to_file(output_file_max, WdtSCAN_max_metrics, 'Wdt-SCAN',
+                                         WdtSCAN_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
+                print_metricsMean_to_file(output_file_mean, WdtSCAN_mean_values, 'Wdt-SCAN',
+                                          WdtSCAN_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
+
+            "5.4 GC-NLDP"
+            if GCNLDP_metrics_lists:
+                GCNLDP_max_metrics = [max(row) for row in zip(*GCNLDP_metrics_lists)]
+                GCNLDP_mean_values = [sum(row) / len(row) for row in zip(*GCNLDP_metrics_lists)]
+
+                output_file_max = 'output/' + 'comparison_' + file + '_max.txt'
+                output_file_mean = 'output/' + 'comparison_' + file + '_mean.txt'
+                print_metricsMax_to_file(output_file_max, GCNLDP_max_metrics, 'GC-NLDP',
+                                         GCNLDP_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
+                print_metricsMean_to_file(output_file_mean, GCNLDP_mean_values, 'GC-NLDP',
+                                          GCNLDP_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
+
+            "5.5 GCC"
             # 获取每列的最大值
             GCC_max_metrics = [max(row) for row in zip(*GCC_metrics_lists)]
 
@@ -360,27 +395,3 @@ if __name__ == '__main__':
                                      privacy_budget, threshold_d, threshold_beta)
             print_metricsMean_to_file(output_file_mean, GCC_mean_values, 'GCC', GCC_RunTime_sum / loop_max,
                                       privacy_budget, threshold_d, threshold_beta)
-
-            "5.4 Wdt-SCAN"
-            if WdtSCAN_metrics_lists:
-                WdtSCAN_max_metrics = [max(row) for row in zip(*WdtSCAN_metrics_lists)]
-                WdtSCAN_mean_values = [sum(row) / len(row) for row in zip(*WdtSCAN_metrics_lists)]
-
-                output_file_max = 'output/' + 'comparison_' + file + '_max.txt'
-                output_file_mean = 'output/' + 'comparison_' + file + '_mean.txt'
-                print_metricsMax_to_file(output_file_max, WdtSCAN_max_metrics, 'Wdt-SCAN',
-                                         WdtSCAN_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
-                print_metricsMean_to_file(output_file_mean, WdtSCAN_mean_values, 'Wdt-SCAN',
-                                          WdtSCAN_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
-
-            "5.5 GC-NLDP"
-            if GCNLDP_metrics_lists:
-                GCNLDP_max_metrics = [max(row) for row in zip(*GCNLDP_metrics_lists)]
-                GCNLDP_mean_values = [sum(row) / len(row) for row in zip(*GCNLDP_metrics_lists)]
-
-                output_file_max = 'output/' + 'comparison_' + file + '_max.txt'
-                output_file_mean = 'output/' + 'comparison_' + file + '_mean.txt'
-                print_metricsMax_to_file(output_file_max, GCNLDP_max_metrics, 'GC-NLDP',
-                                         GCNLDP_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
-                print_metricsMean_to_file(output_file_mean, GCNLDP_mean_values, 'GC-NLDP',
-                                          GCNLDP_RunTime_sum / loop_max, privacy_budget, threshold_d, threshold_beta)
